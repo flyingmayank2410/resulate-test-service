@@ -8,4 +8,6 @@ public interface EmployeeService {
 
 	ResponseEntity<Object> getEmployeesListByPlace(String place, int pageSize);
 
+	ResponseEntity<Object> getRangeSalary(String competency);
+
 }

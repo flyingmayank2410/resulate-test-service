@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +66,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 			response.put("status", 200);
 		else
 			response.put("status", 204);
+		return ResponseEntity.ok(response);
+	}
+
+	@Override
+	public ResponseEntity<Object> getRangeSalary(String competency) {
+		Double range = 0.0;
+		Map<String, Object> response = new HashMap<>();
+		List<EmployeeDetails> list = employeeRepository.findAllByCompetencies(competency);
+		if(list != null && !list.isEmpty()) {
+			Double sum = 0.0;
+			for(EmployeeDetails emp : list)	{
+				sum = sum + emp.getSalary();
+			}
+			range = sum / list.size();
+			response.put("range", range);
+			response.put("message", "Success");
+		}
 		return ResponseEntity.ok(response);
 	}
 

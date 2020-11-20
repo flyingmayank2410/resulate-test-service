@@ -1,7 +1,5 @@
 package com.reulate.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +35,13 @@ public class EmployeeController {
 			@PathVariable(value = "place") String place,
 			@RequestParam(value = "pageSize") int pageSize) {
 		return employeeService.getEmployeesListByPlace(place, pageSize);
+	}
+	
+	@Operation(summary = "Get Range Salary", description = "This api will give employee range salary based on competency ")
+	@GetMapping("/employee/competencies/{competencies}")
+	public ResponseEntity<Object> getRangeSalary(
+			@PathVariable(value = "competencies") String competency) {
+		return employeeService.getRangeSalary(competency);
 	}
 	
 }

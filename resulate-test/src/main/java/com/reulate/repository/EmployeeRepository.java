@@ -14,6 +14,8 @@ public interface EmployeeRepository extends PagingAndSortingRepository<EmployeeD
 	List<EmployeeDetails> findByPlace(String place);
 	
 	List<EmployeeDetails> findAllByPlace(String place, Pageable pageabe);
+
+	List<EmployeeDetails> findAllByCompetencies(String competency);
 	
 
 }
